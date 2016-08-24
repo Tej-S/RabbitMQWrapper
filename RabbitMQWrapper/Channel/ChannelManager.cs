@@ -85,16 +85,10 @@ namespace RabbitMQWrapper.Channel
                 {
                     var message = serializer.DeserializeBytes<RabbitMQWrapperMessage<T>>(ea.Body);
 
-                    Console.WriteLine(message);
-
                     AbstractConsumer<T> consumer = null;
                     try
                     {
                         consumer = resolver(message.EventID, message.Event, message.ContractVersion);
-
-                        Console.WriteLine(message.Event);
-                        Console.WriteLine(message.EventID);
-                        Console.WriteLine(message.ContractVersion);
 
                         if (message.Event == "")
                         {
